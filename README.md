@@ -1,1 +1,1 @@
-# forJavascript
+## for JavaScript practicing repository
