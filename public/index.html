@@ -9,17 +9,16 @@
   </head>
   <body>
     <h1>数字当たりゲーム!</h1>
-    <div>result</div>
-    <input type="number">
-    <button>Go!</button>
+    <div id="comment-area">1~100の数字を入力してください。</div>
+    <input type="number" id="user-input">
+    <button id="playButton">Go!</button>
+    <button id="reset-button">reset</button>
+    <div id="result-area"></div>
+    <div>残りの機会:</div>
+    <span id="chance-area"></span>
 
-    <script src="numberGuess.js"></script>
-    
 
-
-
-
-    <div class="menu">menu1</div>
+    <!-- <div class="menu">menu1</div>
     <div class="menu">menu2</div>
     <div class="menu">menu3</div>
     <div id="personal">id</div>
@@ -28,23 +27,8 @@
         <div>
             textのバリューを返還
         </div>
-    </h1>
-    
+    </h1> -->
 
-    <script>
-        let test = document.getElementById("test")
-        console.log(test.innerText) //좀더 편하게 text를 확인용으로 가져옴 //textContent랑 비슷함
-        console.log(test.textContent)
-        console.log(test.innerHTML) //얘는 태그까지 html요소를 있는 그대로 반환
-
-
-
-        console.log(document.getElementsByClassName("menu"))
-        console.log(document.getElementById("personal"))
-        console.log(Math.floor(Math.random()*100))
-    </script>
-
-
-
+    <script src="numberGuess.js"></script>
   </body>
 </html>
