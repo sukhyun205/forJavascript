@@ -42,3 +42,7 @@ body{
     justify-content: space-between; /*check, delete버튼만 오른쪽으로 옮기기*/
     padding: 12px;
 }
+
+.task-done{
+    text-decoration:line-through;
+}
