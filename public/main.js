@@ -13,15 +13,20 @@
 //all tab은, 다시 전체 아이템으로 돌아옴
 
 let taskInput = document.getElementById("task-input");
-
 let addButton = document.getElementById("add-button");
 addButton.addEventListener("click", addTask);
-
 // let taskElement = document.getElementById("task-element");
-
 let taskList =[];
-
 let ID;
+
+let tabs = document.querySelectorAll(".task-tabs div") //queryselectorall은 모든 속성을 다 가지고 옴
+for(let i=1;i<tabs.length;i++){
+    tabs[i].addEventListener("click", function(event){filter(event)});
+}
+console.log(tabs)
+
+let mode='' //JS에서 초기화 방식 ''
+
 
 function addTask(){
     // console.log("clicked") //clicked로 내가 원하는 부분에 접근했는지 체크가능
@@ -50,7 +55,7 @@ function render(){
             <div class="task-done">${taskList[i].taskContent}</div>
                 <div>
                   <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
-                  <button onclick="deleteTask()">Delete</button>
+                  <button onclick="deleteTask('${taskList[i].ID}')">Delete</button>
                </div>
             </div>`
         }
@@ -59,7 +64,7 @@ function render(){
             <div>${taskList[i].taskContent}</div>
                 <div>
                   <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
-                  <button onclick="deleteTask()">Delete</button>
+                  <button onclick="deleteTask('${taskList[i].ID}')">Delete</button>
                </div>
             </div>`
         }
@@ -74,11 +79,13 @@ function toggleComplete(ID){
     for(let i=0; i<taskList.length; i++){
         if(taskList[i].ID==ID){
             // taskList[i].isComplete=true;
+            // let checkArea = document.getElementsByClassName("check-area");
+            // checkArea="되돌리기";
             taskList[i].isComplete = !taskList[i].isComplete; //(@@중요)check버튼을 다시 클릭하면, taskList[i].isComplete속성을 반대의 논리값으로 바꿔줌.
             break;
         }
     }
-
+    console.log(taskList)
     render(); //제일 많이 하는실수! render()열심히 만들고, 호출 안하는것!
     // console.log("clicked")
     // taskList[0].isComplete=true;
@@ -88,6 +95,62 @@ function randomIDgenerate(){
     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 }
 
-function deleteTask(){
-    console.log("삭제기능test")
+function deleteTask(ID){
+
+    for(let i=0; i<taskList.length; i++){
+        if(taskList[i].ID==ID){
+            // taskList.pop(); //내꺼 //아 pop()은 뒤에서부터 지우기 때문에, 내가 원하는 특정한 것만 제거하는 데에는 알맞지 않네.
+            taskList.splice(i,1); //쌤꺼, splice로 시작지점부터 1개만!(특정개수만) 지우겠다.
+        }
+    }
+
+    console.log(taskList)
+    render();
+}
+
+function filter(event){
+    console.log("filtering 테스트", event.target.id) //event는 내가 지금 접근하는 곳의 모든 정보를 보여줌
+
+    mode = event.target.id;
+
+    if(mode=="all"){
+        render();
+    }
+    else if(mode=="not-done"){
+
+        let resultHTML = '';
+        for(let i=0; i<taskList.length; i++){
+    
+            if(taskList[i].isComplete==false){
+                resultHTML += `<div class="task">
+                <div>${taskList[i].taskContent}</div>
+                    <div>
+                      <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
+                      <button onclick="deleteTask('${taskList[i].ID}')">Delete</button>
+                   </div>
+                </div>`
+            }
+        }
+        document.getElementById("task-board").innerHTML = resultHTML;
+        console.log(resultHTML)
+    }
+    else if(mode="done"){
+
+        let resultHTML = '';
+        for(let i=0; i<taskList.length; i++){
+    
+            if(taskList[i].isComplete==true){
+                resultHTML += `<div class="task">
+                <div class="task-done">${taskList[i].taskContent}</div>
+                    <div>
+                      <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
+                      <button onclick="deleteTask('${taskList[i].ID}')">Delete</button>
+                   </div>
+                </div>`
+            }
+        }
+        document.getElementById("task-board").innerHTML = resultHTML;
+        console.log(resultHTML)
+    }
+
 }

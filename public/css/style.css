@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    /* background-image: url("/public/img/배경.jpg"); */
+    background-image: url("/public/img/background.webp");
     background-size:cover;
 }
 
@@ -45,4 +45,9 @@ body{
 
 .task-done{
     text-decoration:line-through;
+    background-color: antiquewhite;
+}
+
+.task-tabs{
+    cursor:pointer;
 }
