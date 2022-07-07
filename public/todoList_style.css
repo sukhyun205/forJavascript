@@ -63,10 +63,6 @@ body{
     background-color: antiquewhite;
 }
 
-
-
-
-
-/* .task-tabs{
-    cursor: pointer;
-} */
+.task-tabs div{
+    cursor:pointer;
+}
