@@ -26,7 +26,6 @@ function filter(event){
 
     let filterList=[];
 
-    
     if(mode=="all"){
         render();
     }
@@ -81,11 +80,12 @@ function randomIDGenerator(){
 
 function render(){
     let resultHTML = '';
-
+    let list = [];
 
     for(let i=0; i<taskList.length; i++){
 
         if(taskList[i].isComplete==true){
+            list = filterList
 
             resultHTML += 
             `<div class="task">
@@ -100,10 +100,10 @@ function render(){
 
             resultHTML += 
             `<div class="task">
-            <div>${taskList[i].taskContent}</div>
+            <div>${filterList[i].taskContent}</div>
                 <div>
-                    <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
-                    <button onclick="deleteTask('${taskList[i].ID}')">delete</button>
+                    <button onclick="toggleComplete('${filterList[i].ID}')">check</button>
+                    <button onclick="deleteTask('${filterList[i].ID}')">delete</button>
                 </div>
             </div>`
         }
