@@ -7,8 +7,9 @@ let ID;
 let isComplete;
 
 let taskList = [];
+let filterList=[];
 
-let mode='';
+let mode="all";
 
 // let tag = []; list에 넣는것이 아니라, querySlectorALL()을 이용하여 tag에 접근한다.
 let tabs = document.querySelectorAll(".task-tabs div"); //querySelectorALL(.className)을 통해 NodeList의 형태로 내가 원하는 곳에 접근할수있다.
@@ -22,11 +23,12 @@ function filter(event){
 
     mode = event.target.id;
 
+    filterList=[];
+
     console.log("test", event.target.id); //event를 이용해서, id인 all, ongoing, done에 접근
 
-    let filterList=[];
-
     if(mode=="all"){
+        console.log(taskList);
         render();
     }
     else if(mode=="ongoing"){
@@ -41,23 +43,13 @@ function filter(event){
     }
     else if(mode=="done"){
 
-        let resultHTML = '';
-
         for(let i=0; i<taskList.length; i++){
             if(taskList[i].isComplete==true){
-                resultHTML += 
-                `<div class="task">
-                <div class="task-done">${taskList[i].taskContent}</div>
-                    <div>
-                        <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
-                        <button onclick="deleteTask('${taskList[i].ID}')">delete</button>
-                    </div>
-                </div>`
+                filterList.push(taskList[i]);
             }
         }
-        document.getElementById("task-board").innerHTML = resultHTML;
-        
-
+        console.log(filterList);
+        render();
     }
 
 }
@@ -82,17 +74,25 @@ function render(){
     let resultHTML = '';
     let list = [];
 
-    for(let i=0; i<taskList.length; i++){
+    // list = taskList; //이렇게 해도 되고, mode="all"로 디폴트로 all을 넣어도되고
 
-        if(taskList[i].isComplete==true){
-            list = filterList
+    if(mode=="all"){
+        list = taskList;
+    }
+    else if(mode=="ongoing" || mode=="done"){
+        list = filterList;
+    }
+
+    for(let i=0; i<list.length; i++){
+
+        if(list[i].isComplete==true){
 
             resultHTML += 
             `<div class="task">
-            <div class="task-done">${taskList[i].taskContent}</div>
+            <div class="task-done">${list[i].taskContent}</div>
                 <div>
-                    <button onclick="toggleComplete('${taskList[i].ID}')">check</button>
-                    <button onclick="deleteTask('${taskList[i].ID}')">delete</button>
+                    <button onclick="toggleComplete('${list[i].ID}')">check</button>
+                    <button onclick="deleteTask('${list[i].ID}')">delete</button>
                 </div>
             </div>`
         }
@@ -100,10 +100,10 @@ function render(){
 
             resultHTML += 
             `<div class="task">
-            <div>${filterList[i].taskContent}</div>
+            <div>${list[i].taskContent}</div>
                 <div>
-                    <button onclick="toggleComplete('${filterList[i].ID}')">check</button>
-                    <button onclick="deleteTask('${filterList[i].ID}')">delete</button>
+                    <button onclick="toggleComplete('${list[i].ID}')">check</button>
+                    <button onclick="deleteTask('${list[i].ID}')">delete</button>
                 </div>
             </div>`
         }
