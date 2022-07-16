@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\public\\ES6_Exercise.js"
+            "program": "${workspaceFolder}\\public\\ArrayFunction_Exercise.js"
         }
     ]
 }
