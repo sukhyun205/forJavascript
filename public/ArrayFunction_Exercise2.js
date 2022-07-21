@@ -11,42 +11,46 @@ let names = [
     "Lloyd Blankfein",
 ];
 
-// names.forEach((item)=>{console.log(item.toUpperCase())})
-
-
 //1 map
-let toUpperCaseMap = names.map((item)=>{
+let toUpperCase = names.map((item)=>{
     return item.toUpperCase();
 })
-console.log(toUpperCaseMap)
+console.log(toUpperCase)
 
-let printNameMap = names.map((item)=>{
-    return item.split(' ')[0];
+let printFirstName = names.map((item)=>{
+    let splitName = item.split(' ');
+    return splitName[0];
 })
-console.log(printNameMap)
+console.log(printFirstName)
 
 let getInitial = names.map((item)=>{
-    let initial = "";
     let splitName = item.split(' ');
+    let initial = "";
 
     splitName.forEach((item)=>{
         initial += item[0];
     })
-    return initial;
+
+    return initial
 })
-console.log(getInitial)
+console.log("map 이니셜얻기",getInitial)
 
 //2 filter
-let filterName = names.filter((item)=>{
+let filterinclude = names.filter((item)=>{
     return item.includes('a');
 })
-console.log("filter문제1:",filterName)
+console.log("'a'포함filter :",filterinclude)
 
-// let filterName2 = names.filter((item)=>{
-//     let splitName = item.split("");
+let filterSameletter = names.filter((item)=>{
+    let splitName = item.split('');
+    splitName.some((letter,index)=> 
+    console.log("letter: ",letter,"index: ",index) //아 한글자한글자 계속 비교하는거구나
+    )
 
-//     return splitName.some((letter, index)=>
-//         letter == splitName[index+1]
-//     )
-// })
-// console.log("filter문제2:",filterName2)
+
+    return splitName.some((letter,index)=> 
+    letter == splitName[index+1]
+)
+
+})
+console.log("중복글자 filtering: ",filterSameletter)
