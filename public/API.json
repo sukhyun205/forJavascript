@@ -1,0 +1,65 @@
+{
+    "status": "ok",
+    "total_hits": 10000,
+    "page": 1,
+    "total_pages": 5000,
+    "page_size": 2,
+    "articles": [
+        {
+            "title": "Nancy Pelosi To Visit Taiwan As China Threatens Military Action",
+            "author": "Cindy Wang",
+            "published_date": "2022-08-02 09:40:03",
+            "published_date_precision": "full",
+            "link": "https://www.bloomberg.com/news/articles/2022-08-02/pelosi-poised-to-visit-taiwan-as-china-threatens-military-action",
+            "clean_url": "bloomberg.com",
+            "excerpt": "US House Speaker Nancy Pelosi is expected to land in Taiwan on Tuesday evening in defiance of Chinese threats.",
+            "summary": "(Bloomberg) -- US House Speaker Nancy Pelosi is expected to land in Taiwan on Tuesday evening in defiance of Chinese threats, a trip that would make her the highest-ranking American politician to visit the island in 25 years.Pelosi is expected to arrive at 10:20 p.m. local time via private plane at Songshan Airport, according to the Liberty Times, one of several media outlets linked to Taiwan President Tsai Ing-wen's ruling party. The South China Morning Post newspaper reported Tuesday that the US Air Force jet that brought Pelosi to Malaysia had departed the capital at 3:42 p.",
+            "rights": "bqprime.com",
+            "rank": 92,
+            "topic": "business",
+            "country": "US",
+            "language": "en",
+            "authors": "Cindy Wang,World News",
+            "media": "https://gumlet.assettype.com/bloombergquint%2F2022-08%2Ff4d41e9e-c3ea-4ce1-be09-6f92ca8908ef%2F_1x_1.jpg?w=1200&auto=format%2Ccompress&ogImage=true",
+            "is_opinion": false,
+            "twitter_account": "@bqprime",
+            "_score": null,
+            "_id": "fd787034e4a8c5ec7e780f224db1d92c"
+        },
+        {
+            "title": "EBSU consolidates its Canadian presence with a major acquisition in the West",
+            "author": "EBSU",
+            "published_date": "2022-08-02 09:30:00",
+            "published_date_precision": "full",
+            "link": "https://www.prnewswire.com/news-releases/ebsu-consolidates-its-canadian-presence-with-a-major-acquisition-in-the-west-301596870.html",
+            "clean_url": "prnewswire.com",
+            "excerpt": "/PRNewswire/ - EBSU is announcing the acquisition of Eurorite Cabinets ltd, a manufacturing company located in Pitt Meadows, British Columbia. The Quebec group...",
+            "summary": "SAINT-LOUIS-DE-GONZAGUE, QC, Aug. 2, 2022 /PRNewswire/ - EBSU is announcing the acquisition of Eurorite Cabinets ltd, a manufacturing company located in Pitt Meadows, British Columbia. The Quebec group is pursuing its growth plan, already well on its way, and its objective to serve their Canadian customers from coast to coast.\nIn less than two years, EBSU has launched an accelerated acquisition strategy that includes the construction of a new 180,000 square-foot factory in Salaberry-de-Valleyfield, which has been operating since fall 2021, and the purchase of Woodlore International Inc.",
+            "rights": "prnewswire.com",
+            "rank": 190,
+            "topic": "business",
+            "country": "US",
+            "language": "en",
+            "authors": "EBSU",
+            "media": "https://www.prnewswire.com:443/content/dam/prnewswire/icons/2019-Q4-PRN-Icon-32-32.png",
+            "is_opinion": false,
+            "twitter_account": "@PRNewswire",
+            "_score": null,
+            "_id": "dafeb08f991359f238e6f6fe3925446f"
+        }
+    ],
+    "user_input": {
+        "lang": null,
+        "not_lang": null,
+        "countries": [
+            "US"
+        ],
+        "not_countries": null,
+        "page": 1,
+        "size": 2,
+        "sources": null,
+        "not_sources": null,
+        "topic": "business",
+        "from": "2022-07-19 09:49:08"
+    }
+}
