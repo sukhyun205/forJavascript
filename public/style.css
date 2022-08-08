@@ -1,0 +1,42 @@
+.head-line{
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.head-line svg{
+    width: 430px; /*아하 parent태그에 적용해줘야 제대로 되네*/
+}
+
+.menus{
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /*메뉴들의 동적동작 구현가능*/
+    border-top: 1px solid #ebebeb;  
+    border-bottom: 4px double #000;
+}
+
+.menus button{
+    border: none;
+    background: none;
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.menus button:hover{
+    background-color: beige;
+}
+
+.news-img-size{
+    max-width: 100%;
+    max-height: 250px;
+    margin-bottom: 5px;
+}
+
+.news{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 4px double #000;
+}
