@@ -13,6 +13,33 @@
 
 </head>
 <body>
+    <div class="side-menu" id="mySidenav">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+        <div class="side-menu-list" id="menu-list">
+            <button>Sport</button>
+            <button>Tech</button>
+            <button>World</button>
+            <button>Finance</button>
+            <button>Politics</button>
+            <button>Business</button>
+            <button>Economics</button>
+            <button>Beauty</button>
+            <button>Travel</button>
+            <button>Music</button>
+            <button>Food</button>
+            <button>Science</button>
+            <button>Gaming</button>
+            <button>Energy</button>
+        </div>
+    </div>
+    <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span> -->
+    <i class="fas fa-bars hide icon-button" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; OPEN</i>
+
+    <i class="fas fa-search icon-button" onclick="openSearchBox()"></i>
+    <span id="input-area">
+        <input type="text" id="search-input" placeholder="search"/>
+        <button class="search-button" onclick="searchNews()">Go</button>
+    </span>
 
     <section class="container">
         <section>
@@ -39,7 +66,7 @@
                 <button>Energy</button>
             </div>
         </section>
-        <section>
+        <section id="news-board">
             <div class="row news">
                 <div class="col-lg-4">
                     <img class="news-img-size" src="https://static01.nyt.com/images/2022/08/07/business/07dc-vote-schumer/merlin_211181418_dae98053-1f66-45ae-9e2c-eec76dd38c90-threeByTwoMediumAt2X.jpg" alt="">
