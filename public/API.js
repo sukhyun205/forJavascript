@@ -48,22 +48,22 @@ const openSearchBox = ()=>{
 
 const render = ()=>{
     let newsHTML = '';
-    news.map(news=>{
-        return '<div class="row news">
+    newsHTML = news.map((item)=>{ //제에에에발 '말고 `백틱인거 기억하자!!!
+        return `<div class="row news"> 
         <div class="col-lg-4">
-            <img class="news-img-size" src="https://static01.nyt.com/images/2022/08/07/business/07dc-vote-schumer/merlin_211181418_dae98053-1f66-45ae-9e2c-eec76dd38c90-threeByTwoMediumAt2X.jpg" alt="">
+            <img class="news-img-size" src="${item.media}" alt="">
         </div>
         <div class="col-lg-8">
-            <h2>Senate Vote Puts Climate Action in Reach</h2>
+            <h2>${item.title}</h2>
             <p>
-                Bill Also Tackles Taxes and Drug Costs; Could Pass the House This Week
+                ${item.summary}
             </p>
             <div>
-                Scene From Capitol Hill
+                ${item.published_date} from ${item.rights}
             </div>
         </div>
-    </div>';
-    })
+    </div>`
+}).join('join을 쓰면 array타입에서 string타입으로 바꿀 수 있다.')
 
     document.getElementById("news-board").innerHTML = newsHTML;
 }
