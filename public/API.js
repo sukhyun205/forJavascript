@@ -1,4 +1,7 @@
-let news = []
+let news = [];
+let page = 1;
+let total_pages = 0;
+
 let menus = document.querySelectorAll(".menus button")
 
 console.log("munues: ",menus)
@@ -14,15 +17,22 @@ const getLatestNews = async()=>{
 
     let url = new URL('https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10') //new URL()함수는 URL의 정보를 분석해준다.
     let header = new Headers({"x-api-key":"klvI5IGf3ZG2W6NuI0muNA6bLS33bNOy6xR3fip1NlM"})
+
+    url.searchParams.set("page",page) //pagination하면서 세팅한건데, "page"말고 다른거 쓰면 error난다. 그 이유는?
+    console.log("URL값?",url)
+
     let response = await fetch(url,{headers:header}) //async와 await은 한 세트 
     //url, header를 통해 데이터를 fetch해오기도 전에 data를 출력시키면 data 변수를 불러올 수 없게된다.
     let data = await response.json()
-    // console.log("데이터:",data)
+    console.log("받는 데이터가 뭐지?:",data)
+    news = data.articles;
+    total_pages = data.total_pages;
+    page = data.page;
 
-    news = data.articles
     console.log("토픽뉴스:",news)
 
     render();
+    pagination();
 }
 
 const getNewsByTopic = async(event) =>{ //await이랑 async는 짝짜꿍. 무조건 같이 온다.
@@ -30,7 +40,7 @@ const getNewsByTopic = async(event) =>{ //await이랑 async는 짝짜꿍. 무조
     // console.log("클릭됨", event.target.textContent)
 
     let topic = event.target.textContent.toLowerCase()
-    let url = new URL(`https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=KR&page_size=10`)
+    let url = new URL(`https://api.newscatcherapi.com/v2/search?q=${topic}&countries=KR&page_size=10`)
     let header = new Headers({"x-api-key":"klvI5IGf3ZG2W6NuI0muNA6bLS33bNOy6xR3fip1NlM"})
     let response = await fetch(url,{headers:header}) //async와 await은 한 세트 
     let data = await response.json()
@@ -110,8 +120,67 @@ const render = ()=>{
     document.getElementById("news-board").innerHTML = newsHTML;
 }
 
+const pagination = () =>{
+
+    let paginationHTML = ``;
+
+    //total_page
+    //page
+    //page group
+    let pageGroup = Math.ceil(page/5) //아 몫이 0인데 한자리 올리면 1이되는거구나
+    console.log("페이지그룹값?",pageGroup)
+    //last
+    let last = pageGroup*5
+    //first
+    let first = last - 4;
+    //first~last페이지까지 프린트
+    paginationHTML = `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous" onclick="moveToPage(${1})">
+      <span aria-hidden="true">&laquo;</span> 
+    </a>
+    </li>`
+    paginationHTML += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous" onclick="moveToPage(${page-1})">
+      <span aria-hidden="true">&lt;</span> 
+    </a>
+    </li>`
+    for(let i=first; i<=last; i++){
+        paginationHTML += `<li class="page-item ${page==i?"active":""}"><a class="page-link" href="#" onclick="moveToPage(${i})">${i}</a></li>`
+        //오 page==i라면, "active"(부트스트랩)를 써서 현재페이지를 볼드처리해서 알 수 있구나", =!i라면 ""
+    }
+    paginationHTML += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Next" onclick="moveToPage(${page+1})">
+      <span aria-hidden="true">&gt;</span>
+    </a>
+    </li>`
+    paginationHTML += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous" onclick="moveToPage(${total_pages})">
+      <span aria-hidden="true">&raquo;</span> 
+    </a>
+    </li>`
+    //&lt = < 
+    //&gt = > 참고해.
+
+    //total page가 3일경우 3개의 페이지만 프린트하는법? last, first
+    // << >> 이 버튼 만들기 (완)
+
+
+    document.querySelector(".pagination").innerHTML = paginationHTML;
+}
+
+const moveToPage = (pageNum) =>{
+    //1. 이동하고 싶은 페이지를 알아야한다
+    page = pageNum;
+    console.log("페이지값?",page)
+    //2. 이동하고 싶은 페이지로 api를 다시 호출하기
+    getLatestNews(); //코드정리 후에는 getNews()사용.
+
+
+}
+
 searchButton.addEventListener("click", getNewsByKeyword) //함수를 선언(init)한 뒤에 함수를 호출해야함!
 getLatestNews();
+
 
 //기본적인 API를 호출하는 방법.
 // const callAPI = async() => {
